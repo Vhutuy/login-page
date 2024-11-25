@@ -1,8 +1,8 @@
-
 <body>
+    <!-- Barra de Navegação -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand me-auto" href="#"><img src="/assets/svg/logo-branca.svg" alt=""></a>
+            <a class="navbar-brand me-auto" href="#"><img src="/assets/svg/logo-branca.svg" alt="Logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -11,13 +11,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link mx-lg-2" aria-current="page" href="#">Home</a>
+                        <a class="nav-link mx-lg-2" aria-current="page" routerLink="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-lg-2" href="#">Pets</a>
+                        <a class="nav-link mx-lg-2" routerLink="/pets">Pets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-lg-2" href="#">Serviços</a>
+                        <a class="nav-link mx-lg-2" routerLink="/servicos">Serviços</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mx-lg-2" href="#" role="button" data-bs-toggle="dropdown"
@@ -25,13 +25,13 @@
                             Olá, {{ userName || 'Usuário' }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Meus Dados</a></li>
-                            <li><a class="dropdown-item" href="#">Avaliações</a></li>
+                            <li><a class="dropdown-item" routerLink="/perfil">Meu Perfil</a></li>
+                            <li><a class="dropdown-item" routerLink="/dados">Meus Dados</a></li>
+                            <li><a class="dropdown-item" routerLink="/avaliacoes">Avaliações</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sair</a></li>
+                            <li><a class="dropdown-item" routerLink="/logout">Sair</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -39,38 +39,31 @@
         </div>
     </nav>
 
-    <div class="main-container container-fluid ">
+    <div class="main-container container-fluid mt-5">
         <div class="row">
-            <!-- Caixa de filtro horizontal -->
+            <!-- Filtro Horizontal -->
             <div class="col-12 mb-3">
-                <div class="container-filter-horizontal p-3  rounded">
-                    <form class="row g-2">
+                <div class="container-filter-horizontal p-3 rounded">
+                    <form class="row g-2" (ngSubmit)="applyFilters()">
                         <div class="col">
                             <label for="especie" class="form-label">Espécie</label>
-                            <select class="animal-filter form-select" name="especie" id="especie">
-                                <option value="cachorro">Cachorro</option>
-                                <option value="gato">Gato</option>
-                                <option value="coelho">Coelho</option>
-                                <option value="aves">Aves</option>
-                                <option value="equinos">Equinos</option>
+                            <select class="animal-filter form-select" id="especie" [(ngModel)]="selectedEspecie" name="especie">
+                                <option value="">Selecione</option>
+                                <option *ngFor="let especie of especies" [value]="especie">{{ especie }}</option>
                             </select>
                         </div>
                         <div class="col">
                             <label for="raca" class="form-label">Raça</label>
-                            <select class="animal-filter form-select" name="raca" id="raca">
-                                <option value="">Sonic</option>
-                                <option value="">Shadow</option>
-                                <option value="">Tails</option>
-                                <option value="">Robotinik</option>
+                            <select class="animal-filter form-select" id="raca" [(ngModel)]="selectedRaca" name="raca">
+                                <option value="">Selecione</option>
+                                <option *ngFor="let raca of racas" [value]="raca">{{ raca }}</option>
                             </select>
                         </div>
                         <div class="col">
                             <label for="cor" class="form-label">Cor</label>
-                            <select class="animal-filter form-select" name="cor" id="cor">
-                                <option value="">Preto</option>
-                                <option value="">Branco</option>
-                                <option value="">Amarelo</option>
-                                <option value="">Laranja</option>
+                            <select class="animal-filter form-select" id="cor" [(ngModel)]="selectedCor" name="cor">
+                                <option value="">Selecione</option>
+                                <option *ngFor="let cor of cores" [value]="cor">{{ cor }}</option>
                             </select>
                         </div>
                         <div class="col">
@@ -83,62 +76,85 @@
                 </div>
             </div>
 
-            <!-- Caixa de filtro vertical -->
-            <div class="container-filter-vertical col-3">
-                <div class="p-3 rounded h-100">
-                    <form class="d-flex flex-column gap-3">
-                        <label class="form-label">Tamanho</label>
-                        <select class="vertical-animal-filter form-select" name="tamanho" id="tamanho">
+            <!-- Filtro Vertical -->
+            <div class="col-3 mb-3">
+                <div class="container-filter-vertical p-3 rounded">
+                    <form class="d-flex flex-column gap-3" (ngSubmit)="applyFilters()">
+                        <label class="form-label" for="tamanho">Tamanho</label>
+                        <select class="vertical-animal-filter form-select" id="tamanho" [(ngModel)]="selectedTamanho" name="tamanho">
+                            <option value="">Selecione</option>
                             <option value="pequeno">Pequeno Porte</option>
                             <option value="medio">Médio Porte</option>
                             <option value="grande">Grande Porte</option>
                         </select>
-                        <label class="form-label">Sexo</label>
-                        <select class="vertical-animal-filter form-select" name="sexo" id="sexo">
+
+                        <label class="form-label" for="sexo">Sexo</label>
+                        <select class="vertical-animal-filter form-select" id="sexo" [(ngModel)]="selectedSexo" name="sexo">
+                            <option value="">Selecione</option>
                             <option value="masculino">Masculino</option>
                             <option value="feminino">Feminino</option>
                         </select>
-                        <label class="form-label">Idade</label>
-                        <select class="vertical-animal-filter form-select" name="idade-inicio" id="idade-inicio">
-                            <option value="idade">1 mês</option>
+
+                        <label class="form-label" for="idade-inicio">Idade</label>
+                        <select class="vertical-animal-filter form-select" id="idade-inicio" [(ngModel)]="selectedIdadeInicio" name="idade-inicio">
+                            <option value="1">1 mês</option>
+                            <option value="6">6 meses</option>
+                            <option value="12">1 ano</option>
                         </select>
+
                         <p class="age-filter">Até</p>
-                        <select class="vertical-animal-filter form-select" name="idade-fim" id="idade-fim">
-                            <option value="idade">1 ano</option>
+                        <select class="vertical-animal-filter form-select" id="idade-fim" [(ngModel)]="selectedIdadeFim" name="idade-fim">
+                            <option value="1">1 ano</option>
+                            <option value="2">2 anos</option>
+                            <option value="5">5 anos</option>
                         </select>
                     </form>
                     <div class="button-search-vertical">
                         <button class="button-search" type="submit">Buscar</button>
                     </div>
                     <div class="button-clear-vertical">
-                        <button class="button-clear" type="reset">Limpar</button>
+                        <button class="button-clear" type="button" (click)="clearVerticalFilters()">Limpar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Grid de animais -->
+            <!-- Grid de Animais -->
             <div class="col-9">
-                <div id="animalGrid" class="row row-cols-3 g-4">
-                    <!-- Os quadrados de animais serão renderizados aqui via JavaScript -->
+                <div id="animalGrid" class="row row-cols-1 row-cols-md-3 g-4">
+                    <div *ngFor="let pet of paginatedPets" class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pet.nome }}</h5>
+                                <p class="card-text">Espécie: {{ pet.especie }}</p>
+                                <p class="card-text">Raça: {{ pet.raca }}</p>
+                                <p class="card-text">Cor: {{ pet.cor }}</p>
+                                <p class="card-text">Idade: {{ pet.idade }} anos</p>
+                                <p class="card-text">{{ pet.descricao }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Paginação -->
                 <div class="d-flex justify-content-center mt-4">
-                    <button id="prevBtn" class="btn btn-outline-secondary me-2" onclick="changePage(-1)"
-                        disabled>&laquo;
-                        Anterior</button>
-                    <button id="nextBtn" class="btn btn-outline-secondary" onclick="changePage(1)">Próximo
-                        &raquo;</button>
+                    <button
+                        id="prevBtn"
+                        class="btn btn-outline-secondary me-2"
+                        (click)="changePage(-1)"
+                        [disabled]="currentPage === 1">
+                        &laquo; Anterior
+                    </button>
+                    <button
+                        id="nextBtn"
+                        class="btn btn-outline-secondary"
+                        (click)="changePage(1)"
+                        [disabled]="currentPage === maxPages">
+                        Próximo &raquo;
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <!--<section class="pets-section"></section>-->
-
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
