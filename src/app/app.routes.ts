@@ -3,7 +3,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { UserComponent } from './pages/user/user.component';
 import { AuthGuard } from './services/auth-guard.service';
-import { PetsComponent } from './pages/pets/pets.component';
+import { HomeComponent } from './pages/home/home.component';
+
 
 export const routes: Routes = [
     {
@@ -20,8 +21,8 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: "pets",
-        component: PetsComponent,
+        path: "home",
+        component: HomeComponent,
         canActivate: [AuthGuard]
     }
 ];

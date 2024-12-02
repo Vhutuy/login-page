@@ -1,48 +1,25 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
-
-export interface Animal {
-  id: string;
-  especie: string;
-  raca: string;
-  cor: string;
-  tamanho: string;
-  sexo: string;
-  idade: number;
-  descricao: string;
-}
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AnimalService {
-  private apiUrl = 'http://localhost:8080/animais';
-  
-  constructor(private http: HttpClient) { }
+  private baseUrl = 'http://localhost:8080/animais';
 
-  // Método para pegar os animais com o token no cabeçalho
-  getAnimais(): Observable<Animal[]> {
-    const authToken = sessionStorage.getItem('auth-token');
-if (authToken) {
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${authToken}`
-  });
+  constructor(private http: HttpClient) {}
 
-  return this.http.get<Animal[]>(this.apiUrl, { headers }).pipe(
-    catchError((error) => {
-      console.error('Erro na requisição:', error);
-      if (error.status === 403) {
-        console.error('Erro 403: Permissão negada. Verifique seu token.');
-      } else if (error.status === 401) {
-        console.error('Erro 401: Token inválido ou ausente.');
-      }
-      return throwError(error); // Retorna o erro para ser tratado na camada superior
-    })
-  );
-} else {
-  console.error('Token de autenticação não encontrado');
-  return throwError('Token de autenticação não encontrado');
-}
+  buscarTodos(): Observable<any[]> {
+    const token = sessionStorage.getItem('auth-token'); // Verifique se o token está no sessionStorage
+    if (!token) {
+      throw new Error('Token não encontrado no sessionStorage!');
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`, // Adicione o token JWT no cabeçalho
+    });
+
+    return this.http.get<any[]>(this.baseUrl, { headers });
   }
 }
