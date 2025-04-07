@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AnimalService {
-  private baseUrl = 'http://localhost:8080/animais';
+  private baseUrl = 'https://patas-backend.onrender.com/animais';
 
   constructor(private http: HttpClient) {}
 
