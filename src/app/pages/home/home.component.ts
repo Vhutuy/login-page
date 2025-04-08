@@ -3,9 +3,6 @@ import ScrollReveal from 'scrollreveal';
 import { CommonModule } from '@angular/common';
 import { AnimalService } from '../../services/animal.service';
 
-
-
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -108,4 +105,6 @@ export class HomeComponent implements AfterViewInit, OnInit {
     (document.getElementById('idade-min') as HTMLInputElement).value = '';
     (document.getElementById('idade-max') as HTMLInputElement).value = '';
   }
+
+  
 }

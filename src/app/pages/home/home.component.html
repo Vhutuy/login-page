@@ -1,146 +1,159 @@
-<body>
-    <nav>
-        <div class="nav__header">
-            <div class="nav__logo">
-                <a href="#logo">Patas</a>
-            </div>
-            <div class="nav__menu__btn" id="menu-btn">
-                <i class="ri-menu-line"></i>
-            </div>
-        </div>
-        <ul class="nav__links" id="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#sobre-nos">Sobre nós</a></li>
-            <li><a href="#pets">Pets</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#usuario">Olá, {{ user || "Usúario" }}</a>
-            </li>
-        </ul>
-    </nav>
-    <header id="home">
-        <div class="section__container header__container">
-            <div class="header__content">
-                <h4>Seja Bem-Vindo</h4>
-                <h1>Projeto <br> <span>Patas</span></h1>
-                <h2>Nós amamos todos os animais assim como você!</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim quasi voluptatum, hic, maiores nostrum
-                    reiciendis suscipit odio labore, tempora delectus nemo quis omnis nam ipsam? Rem saepe alias id
-                    officiis! </p>
-                <div class="header__btn">
-                    <button>Ajude-nos!
-                        <span><i class="ri-arrow-right-line"></i></span>
-                    </button>
-                </div>
-            </div>
-            <div class="header__image">
-                <img src="/assets/png/pata.png" alt="header-bg" class="header__image-bg">
-                <img src="/assets/png/white-background-animals-dog-cat-wallpaper-preview-removebg-preview.png" alt="header">
-            </div>
-        </div>
-        <div class="header__botttom"></div>
-    </header>
-    <section class="section__container__filter__horizontal">
-        <div class="filter__pets">
-            <div class="filter__group">
-                <label for="especies" class="filter__label">Espécie</label>
-                <select name="especies" id="especies" class="especies__select">
-                    <option value="cachorro">Cachorro</option>
-                    <option value="gato">Gato</option>
-                    <option value="coelho">Coelho</option>
-                    <option value="aves">Aves</option>
-                    <option value="equinos">Equinos</option>
-                </select>
-            </div>
-            <div class="filter__group">
-                <label for="racas" class="filter__label">Raça</label>
-                <select name="racas" id="racas" class="races__select">
-                    <option value="racas-cachorro">Labrador</option>
-                    <option value="racas-cachorro">Pastor-Alemão</option>
-                    <option value="racas-cachorro">Poodle</option>
-                    <option value="racas-cachorro">Bulldog</option>
-                    <option value="racas-cachorro">Caramelo</option>
-                </select>
-            </div>
-            <div class="filter__group">
-                <label for="cor" class="filter__label">Cor</label>
-                <select name="cor" id="cor" class="color__select">
-                    <option value="preto">Preto</option>
-                    <option value="branco">Branco</option>
-                    <option value="amarelo">Amarelo</option>
-                    <option value="laranja">Laranja</option>
-                </select>
-            </div>
-            <div class="filter__group">
-                <button class="button__search" type="submit">Buscar</button>
-            </div>
-            <div class="filter__group">
-                <button class="button__clear" type="reset">Limpar</button>
-            </div>
-        </div>
-    </section>
-    <div class="main_body_container">
-        <!-- Filtro -->
-        <section class="section__container__filter__vertical">
-          <div class="filter__pets">
-            <div class="filter__group">
-              <label for="tamanho" class="filter__label">Tamanho</label>
-              <select name="tamanho" id="tamanho" class="tamanho__select">
-                <option value="pequeno">Pequeno</option>
-                <option value="medio">Médio</option>
-                <option value="grande">Grande</option>
-              </select>
-            </div>
-            <div class="filter__group">
-              <label for="sexo" class="filter__label">Sexo</label>
-              <select name="sexo" id="sexo" class="sexo__select">
-                <option value="macho">Macho</option>
-                <option value="femea">Fêmea</option>
-              </select>
-            </div>
-            <div class="filter__group">
-              <label for="idade" class="filter__label">Idade</label>
-              <select name="idade" id="idade-min" class="idade__select">
-                <option value="1">1 mês</option>
-              </select>
-              <p class="idade__content">Até</p>
-              <select name="idade" id="idade-max" class="idade__select">
-                <option value="1">1 ano</option>
-              </select>
-            </div>
-            <div class="filter__group">
-              <button class="button__search" type="submit">Buscar</button>
-            </div>
-            <div class="filter__group">
-              <button class="button__clear" type="reset">Limpar</button>
-            </div>
-          </div>
-        </section>
-      
-        <!-- Grid de Animais -->
-        <div class="animal_card_container">
-          <div *ngFor="let animal of animaisPaginados" class="animal-card">
-            <img src="/assets/png/pata.png" alt="">
-            <h3>{{ animal.nome }}</h3>
-            <p>Raça: {{ animal.raca }}</p>
-            <p>Idade: {{ animal.idade }}</p>
-            <p>Cor: {{ animal.cor }}</p>
-          </div>
-        </div>
-      
-        <!-- Botões de Paginação -->
-        <div class="pagination">
-          <button (click)="paginaAnterior()" [disabled]="paginaAtual === 0">Anterior</button>
-          <button (click)="proximaPagina()" [disabled]="(paginaAtual + 1) * itensPorPagina >= animais.length">
-            Próxima
-          </button>
-        </div>
+
+<div class="banner-wrapper">
+  <div class="banner-container">
+    <img src="assets/png/pets-removebg-preview.png" alt="Banner">
+    <div>
+      <h1>Mais Um Amigo</h1>
+      <h2>100% a mais de diversão</h2>
+      <p>Ter um animal de estimação significa ter mais alegria, um novo amigo, <br> uma companhia feliz que estará sempre com você para se divertir. <br> Temos mais de 200 pets diferentes que precisam de um novo lar!</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <aside class="filter">
+    <h3>Filtro</h3>
+
+    <label for="especie">Espécie</label>
+    <select id="especie" name="especie">
+      <option value="">Selecione</option>
+      <option value="Cachorro">Cachorro</option>
+      <option value="Gato">Gato</option>
+    </select>
+
+    <label for="raca">Raça</label>
+    <select id="raca" name="raca">
+      <option value="">Selecione</option>
+      <option value="Labrador">Labrador</option>
+      <option value="Poodle">Poodle</option>
+      <option value="Persa">Persa</option>
+      <option value="Siamês">Siamês</option>
+    </select>
+
+    <div class="linha"></div>
+
+    <div class="filter-group">
+      <label>Gênero</label>
+      <div>
+        <input type="checkbox" id="genero-macho" name="genero" value="Macho">
+        <label for="genero-macho">Macho</label>
       </div>
-      
-    
+      <div>
+        <input type="checkbox" id="genero-femea" name="genero" value="Fêmea">
+        <label for="genero-femea">Fêmea</label>
+      </div>
+    </div>
 
+    <div class="linha"></div>
 
-    
+    <div class="filter-group">
+      <label>Cor</label>
+      <div><input type="checkbox" id="cor-vermelho" value="Vermelho"> Vermelho</div>
+      <div><input type="checkbox" id="cor-damasco" value="Damasco"> Damasco</div>
+      <div><input type="checkbox" id="cor-preto" value="Preto"> Preto</div>
+      <div><input type="checkbox" id="cor-branco" value="Branco"> Branco</div>
+      <div><input type="checkbox" id="cor-cinza" value="Cinza"> Cinza</div>
+    </div>
 
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="js/home.js"></script>
-</body>
+    <div class="linha"></div>
+
+    <div class="filter-group">
+      <label>Idade</label>
+      <input type="number" min="0" placeholder="Min">
+      <input type="number" max="100" placeholder="Max">
+    </div>
+
+    <div class="linha"></div>
+
+    <div class="filter-group">
+      <label>Tamanho</label>
+      <div><input type="checkbox" value="Pequeno"> Pequeno</div>
+      <div><input type="checkbox" value="Médio"> Médio</div>
+      <div><input type="checkbox" value="Grande"> Grande</div>
+    </div>
+  </aside>
+
+  <main class="animal-cards">
+    <div class="card">
+      <img src="assets/jpg/YellowLabradorLooking_new.jpg" alt="Labrador">
+      <div class="card-info">
+        <h4>Labrador</h4>
+        <p>Gênero: Macho</p>
+        <p>Cor: Branco</p>
+        <p>Tamanho: Grande</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/png/gato-persa-930x620.png" alt="Persa">
+      <div class="card-info">
+        <h4>Persa</h4>
+        <p>Gênero: Fêmea</p>
+        <p>Cor: Branco</p>
+        <p>Tamanho: Pequeno</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/jpg/Poodle-1.jpg" alt="Poodle">
+      <div class="card-info">
+        <h4>Poodle</h4>
+        <p>Gênero: Fêmea</p>
+        <p>Cor: Damasco</p>
+        <p>Tamanho: Pequeno</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/jpg/YellowLabradorLooking_new.jpg" alt="Labrador">
+      <div class="card-info">
+        <h4>Labrador</h4>
+        <p>Gênero: Macho</p>
+        <p>Cor: Branco</p>
+        <p>Tamanho: Grande</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/png/gato-persa-930x620.png" alt="Persa">
+      <div class="card-info">
+        <h4>Persa</h4>
+        <p>Gênero: Fêmea</p>
+        <p>Cor: Branco</p>
+        <p>Tamanho: Pequeno</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/jpg/Poodle-1.jpg" alt="Poodle">
+      <div class="card-info">
+        <h4>Poodle</h4>
+        <p>Gênero: Fêmea</p>
+        <p>Cor: Damasco</p>
+        <p>Tamanho: Pequeno</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/jpg/YellowLabradorLooking_new.jpg" alt="Labrador">
+      <div class="card-info">
+        <h4>Labrador</h4>
+        <p>Gênero: Macho</p>
+        <p>Cor: Branco</p>
+        <p>Tamanho: Grande</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/png/gato-persa-930x620.png" alt="Persa">
+      <div class="card-info">
+        <h4>Persa</h4>
+        <p>Gênero: Fêmea</p>
+        <p>Cor: Branco</p>
+        <p>Tamanho: Pequeno</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/jpg/Poodle-1.jpg" alt="Poodle">
+      <div class="card-info">
+        <h4>Poodle</h4>
+        <p>Gênero: Fêmea</p>
+        <p>Cor: Damasco</p>
+        <p>Tamanho: Pequeno</p>
+      </div>
+    </div>
+  </main>
+</div>
