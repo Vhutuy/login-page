@@ -90,21 +90,4 @@ export class HomeComponent implements AfterViewInit, OnInit {
     }
   }
 
-  buscarFiltro(): void {
-    const tamanho = (document.getElementById('tamanho') as HTMLInputElement).value;
-    const sexo = (document.getElementById('sexo') as HTMLInputElement).value;
-    const idadeMin = (document.getElementById('idade-min') as HTMLInputElement).value;
-    const idadeMax = (document.getElementById('idade-max') as HTMLInputElement).value;
-
-    console.log({ tamanho, sexo, idadeMin, idadeMax });
-  }
-
-  limparFiltros(): void {
-    (document.getElementById('tamanho') as HTMLInputElement).value = '';
-    (document.getElementById('sexo') as HTMLInputElement).value = '';
-    (document.getElementById('idade-min') as HTMLInputElement).value = '';
-    (document.getElementById('idade-max') as HTMLInputElement).value = '';
-  }
-
-  
 }
