@@ -1,0 +1,93 @@
+<!-- TO DO Paginar formulário-->
+
+<app-deafult-login-layout
+  title="Registrar Animal"
+  primaryBtnText="Registrar"
+  secondaryBtnText="Voltar"
+  (navigate)="navigate()"
+  [disablePrimaryBtn]="!animalForm.valid"
+>
+  <form [formGroup]="animalForm">
+    <app-primary-input
+      formControlName="nome"
+      inputName="nome"
+      type="text"
+      label="Nome"
+      placeholder="Nome do animal"
+    >
+      <img src="/assets/svg/pet-icon.svg" />
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="cor"
+      inputName="cor"
+      type="text"
+      label="Cor"
+      placeholder="Cor do animal"
+    >
+      <img src="/assets/svg/pet-icon.svg" />
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="descricao"
+      inputName="descricao"
+      type="text"
+      label="Descrição"
+      placeholder="Fale sobre o animal"
+    >
+      <img src="/assets/svg/pet-icon.svg" />
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="especie"
+      inputName="especie"
+      type="text"
+      label="Espécie"
+      placeholder="Ex: Cachorro, Gato"
+    >
+      <img src="/assets/svg/pet-icon.svg" />
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="idade"
+      inputName="idade"
+      type="text"
+      label="Idade"
+      placeholder="Idade"
+    >
+      <img src="/assets/svg/pet-icon.svg" />
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="raca"
+      inputName="raca"
+      type="text"
+      label="Raça"
+      placeholder="Raça do animal"
+    >
+      <img src="/assets/svg/pet-icon.svg" />
+    </app-primary-input>
+
+    <!-- TO DO - transformar em select -->
+    <app-primary-input
+      formControlName="sexo"
+      inputName="sexo"
+      type="text"
+      label="Sexo"
+      placeholder="Macho ou Fêmea"
+    >
+      <img src="/assets/svg/pet-icon.svg" />
+    </app-primary-input>
+
+    <!-- TO DO - transformar em select -->
+    <app-primary-input
+      formControlName="tamanho"
+      inputName="tamanho"
+      type="text"
+      label="Tamanho"
+      placeholder="Pequeno, Médio, Grande"
+    >
+      <img src="/assets/svg/pet-icon.svg" />
+    </app-primary-input>
+  </form>
+</app-deafult-login-layout>
