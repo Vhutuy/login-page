@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,14 +11,14 @@ export class AnimalService {
   constructor(private http: HttpClient) {}
 
   buscarTodos(): Observable<any[]> {
-    const token = sessionStorage.getItem('auth-token'); // Verifique se o token está no sessionStorage
+    const token = sessionStorage.getItem('auth-token');
+
     if (!token) {
-      throw new Error('Token não encontrado no sessionStorage!');
+      console.error('Token não encontrado no sessionStorage.');
+      return throwError(() => new Error('Token de autenticação ausente.'));
     }
 
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`, // Adicione o token JWT no cabeçalho
-    });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.get<any[]>(this.baseUrl, { headers });
   }

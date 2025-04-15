@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AnimalSignupComponent } from "./pages/animal-signup/animal-signup.component";
 
 @Component({
   selector: 'app-root',

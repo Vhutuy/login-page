@@ -1,9 +1,11 @@
 <nav class="navbar">
-  <div class="navbar-logo"><a href="home"></a><img src="/assets/svg/Logo-preta.svg" alt=""></div>
+  <div class="navbar-logo">
+    <a routerLink="/home"><img src="/assets/svg/Logo-preta.svg" alt=""></a>
+  </div>
   <ul class="navbar-links">
     <li><a routerLink="/home">Home</a></li>
-    <li><a routerlink="/about-us">Sobre nós</a></li>
-    <li><a routerLink="/pets">Pets</a></li>
+    <li><a routerLink="/about-us">Sobre nós</a></li>
+    <li><a routerLink="/animal-signup">Pets</a></li>
   </ul>
   <div class="navbar-user">
     <i class="fa fa-user"></i>
@@ -16,7 +18,11 @@
     <div>
       <h1>Mais Um Amigo</h1>
       <h2>100% a mais de diversão</h2>
-      <p>Ter um animal de estimação significa ter mais alegria, um novo amigo, <br> uma companhia feliz que estará sempre com você para se divertir. <br> Temos mais de 200 pets diferentes que precisam de um novo lar!</p>
+      <p>
+        Ter um animal de estimação significa ter mais alegria, um novo amigo, <br>
+        uma companhia feliz que estará sempre com você para se divertir. <br>
+        Temos mais de 200 pets diferentes que precisam de um novo lar!
+      </p>
     </div>
   </div>
 </div>
@@ -25,15 +31,17 @@
   <aside class="filter">
     <h3>Filtro</h3>
 
+    <!-- Espécie -->
     <label for="especie">Espécie</label>
-    <select id="especie" name="especie">
+    <select id="especie" name="especie" (change)="onEspecieChange($event)">
       <option value="">Selecione</option>
-      <option value="Cachorro">Cachorro</option>
-      <option value="Gato">Gato</option>
+      <option value="CACHORRO">Cachorro</option>
+      <option value="GATO">Gato</option>
     </select>
 
+    <!-- Raça -->
     <label for="raca">Raça</label>
-    <select id="raca" name="raca">
+    <select id="raca" name="raca" (change)="onRacaChange($event)">
       <option value="">Selecione</option>
       <option value="Labrador">Labrador</option>
       <option value="Poodle">Poodle</option>
@@ -43,119 +51,80 @@
 
     <div class="linha"></div>
 
+    <!-- Gênero -->
     <div class="filter-group">
       <label>Gênero</label>
       <div>
-        <input type="checkbox" id="genero-macho" name="genero" value="Macho">
+        <input type="checkbox" id="genero-macho" value="MACHO" (change)="onCheckChange($event, 'genero')">
         <label for="genero-macho">Macho</label>
       </div>
       <div>
-        <input type="checkbox" id="genero-femea" name="genero" value="Fêmea">
+        <input type="checkbox" id="genero-femea" value="FEMEA" (change)="onCheckChange($event, 'genero')">
         <label for="genero-femea">Fêmea</label>
       </div>
     </div>
 
     <div class="linha"></div>
 
+    <!-- Cor -->
     <div class="filter-group">
       <label>Cor</label>
-      <div><input type="checkbox" id="cor-vermelho" value="Vermelho"> <span class="color-dot red"></span> Vermelho</div>
-      <div><input type="checkbox" id="cor-damasco" value="Damasco"> <span class="color-dot damasco"></span> Damasco</div>
-      <div><input type="checkbox" id="cor-preto" value="Preto"> <span class="color-dot black"></span> Preto</div>
-      <div><input type="checkbox" id="cor-branco" value="Branco"> <span class="color-dot white"></span> Branco</div>
-      <div><input type="checkbox" id="cor-cinza" value="Cinza"> <span class="color-dot gray"></span> Cinza</div>
+      <div>
+        <input type="checkbox" id="cor-vermelho" value="Vermelho" (change)="onCheckChange($event, 'cor')">
+        <span class="color-dot red"></span> Vermelho
+      </div>
+      <div>
+        <input type="checkbox" id="cor-damasco" value="Damasco" (change)="onCheckChange($event, 'cor')">
+        <span class="color-dot damasco"></span> Damasco
+      </div>
+      <div>
+        <input type="checkbox" id="cor-preto" value="Preto" (change)="onCheckChange($event, 'cor')">
+        <span class="color-dot black"></span> Preto
+      </div>
+      <div>
+        <input type="checkbox" id="cor-branco" value="Branco" (change)="onCheckChange($event, 'cor')">
+        <span class="color-dot white"></span> Branco
+      </div>
+      <div>
+        <input type="checkbox" id="cor-cinza" value="Cinza" (change)="onCheckChange($event, 'cor')">
+        <span class="color-dot gray"></span> Cinza
+      </div>
     </div>
 
     <div class="linha"></div>
 
+    <!-- Idade -->
     <div class="filter-group">
       <label>Idade</label>
-      <input type="number" min="0" placeholder="Min">
-      <input type="number" max="100" placeholder="Max">
+      <input type="number" min="0" placeholder="Min" (input)="onIdadeChange('min', $event)">
+      <input type="number" max="100" placeholder="Max" (input)="onIdadeChange('max', $event)">
     </div>
 
     <div class="linha"></div>
 
+    <!-- Tamanho -->
     <div class="filter-group">
       <label>Tamanho</label>
-      <div><input type="checkbox" value="Pequeno"> Pequeno</div>
-      <div><input type="checkbox" value="Médio"> Médio</div>
-      <div><input type="checkbox" value="Grande"> Grande</div>
+      <div><input type="checkbox" value="PEQUENO" (change)="onCheckChange($event, 'tamanho')"> Pequeno</div>
+      <div><input type="checkbox" value="MEDIO" (change)="onCheckChange($event, 'tamanho')"> Médio</div>
+      <div><input type="checkbox" value="GRANDE" (change)="onCheckChange($event, 'tamanho')"> Grande</div>
     </div>
   </aside>
 
   <main class="animal-cards">
-    <div class="card">
-      <img src="assets/jpg/YellowLabradorLooking_new.jpg" alt="Labrador">
+    <div class="card" *ngFor="let animal of animaisPaginados">
+      <img [src]="animal.fotoUrl || 'assets/png/pets-removebg-preview.png'" [alt]="animal.nome">
       <div class="card-info">
-        <h4>Labrador Grande Amarelo</h4>
-        <p>Gênero: Macho - Idade: 2 anos</p>
-        <button>Saiba mais</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="assets/png/gato-persa-930x620.png" alt="Persa">
-      <div class="card-info">
-        <h4>Persa Pequeno Branco</h4>
-        <p>Gênero: Fêmea - Idade: 3 anos</p>
-        <button>Saiba mais</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="assets/jpg/Poodle-1.jpg" alt="Poodle">
-      <div class="card-info">
-        <h4>Poodle Pequeno Damasco</h4>
-        <p>Gênero: Fêmea - Idade: 2 meses</p>
-        <button>Saiba mais</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="assets/jpg/YellowLabradorLooking_new.jpg" alt="Labrador">
-      <div class="card-info">
-        <h4>Labrador Grande Amarelo</h4>
-        <p>Gênero: Macho - Idade: 2 anos</p>
-        <button>Saiba mais</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="assets/png/gato-persa-930x620.png" alt="Persa">
-      <div class="card-info">
-        <h4>Persa Pequeno Branco</h4>
-        <p>Gênero: Fêmea - Idade: 3 anos</p>
-        <button>Saiba mais</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="assets/jpg/Poodle-1.jpg" alt="Poodle">
-      <div class="card-info">
-        <h4>Poodle Pequeno Damasco</h4>
-        <p>Gênero: Fêmea - Idade: 2 meses</p>
-        <button>Saiba mais</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="assets/jpg/YellowLabradorLooking_new.jpg" alt="Labrador">
-      <div class="card-info">
-        <h4>Labrador Grande Amarelo</h4>
-        <p>Gênero: Macho - Idade: 2 anos</p>
-        <button>Saiba mais</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="assets/png/gato-persa-930x620.png" alt="Persa">
-      <div class="card-info">
-        <h4>Persa Pequeno Branco</h4>
-        <p>Gênero: Fêmea - Idade: 3 anos</p>
-        <button>Saiba mais</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="assets/jpg/Poodle-1.jpg" alt="Poodle">
-      <div class="card-info">
-        <h4>Poodle Pequeno Damasco</h4>
-        <p>Gênero: Fêmea - Idade: 2 meses</p>
+        <h4>{{ animal.nome }}</h4>
+        <p>Gênero: {{ animal.sexo }} - Idade: {{ animal.idade }} {{ animal.idade === 1 ? 'ano' : 'anos' }}</p>
         <button>Saiba mais</button>
       </div>
     </div>
   </main>
+</div>
+
+<!-- Paginação -->
+<div class="pagination-controls">
+  <button (click)="paginaAnterior()" [disabled]="paginaAtual === 0">Anterior</button>
+  <button (click)="proximaPagina()" [disabled]="(paginaAtual + 1) * itensPorPagina >= animaisFiltrados.length">Próxima</button>
 </div>

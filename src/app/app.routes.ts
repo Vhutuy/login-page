@@ -32,4 +32,7 @@ export const routes: Routes = [
         component: AnimalSignupComponent,
         canActivate:[AuthGuard]
     }
+    
 ];
+
+
