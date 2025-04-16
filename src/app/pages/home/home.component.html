@@ -31,27 +31,28 @@
   <aside class="filter">
     <h3>Filtro</h3>
 
-    <!-- Espécie -->
     <label for="especie">Espécie</label>
     <select id="especie" name="especie" (change)="onEspecieChange($event)">
       <option value="">Selecione</option>
       <option value="CACHORRO">Cachorro</option>
       <option value="GATO">Gato</option>
+      <option value="AVES">Aves</option>
+      <option value="COELHO">Coelho</option>
+      <option value="EQUINOS">Equinos</option>
     </select>
 
-    <!-- Raça -->
-    <label for="raca">Raça</label>
-    <select id="raca" name="raca" (change)="onRacaChange($event)">
+    <label for="raca" *ngIf="mostrarRacas">Raça</label>
+    <select id="raca" name="raca" *ngIf="mostrarRacas" (change)="onRacaChange($event)">
       <option value="">Selecione</option>
-      <option value="Labrador">Labrador</option>
-      <option value="Poodle">Poodle</option>
-      <option value="Persa">Persa</option>
-      <option value="Siamês">Siamês</option>
+      <option value="LABRADOR">Labrador</option>
+      <option value="PASTOR_ALEMAO">Pastor Alemão</option>
+      <option value="POODLE">Poodle</option>
+      <option value="BULLDOG">Bulldog</option>
+      <option value="OUTRA">Outra</option>
     </select>
 
     <div class="linha"></div>
 
-    <!-- Gênero -->
     <div class="filter-group">
       <label>Gênero</label>
       <div>
@@ -66,34 +67,17 @@
 
     <div class="linha"></div>
 
-    <!-- Cor -->
     <div class="filter-group">
       <label>Cor</label>
-      <div>
-        <input type="checkbox" id="cor-vermelho" value="Vermelho" (change)="onCheckChange($event, 'cor')">
-        <span class="color-dot red"></span> Vermelho
-      </div>
-      <div>
-        <input type="checkbox" id="cor-damasco" value="Damasco" (change)="onCheckChange($event, 'cor')">
-        <span class="color-dot damasco"></span> Damasco
-      </div>
-      <div>
-        <input type="checkbox" id="cor-preto" value="Preto" (change)="onCheckChange($event, 'cor')">
-        <span class="color-dot black"></span> Preto
-      </div>
-      <div>
-        <input type="checkbox" id="cor-branco" value="Branco" (change)="onCheckChange($event, 'cor')">
-        <span class="color-dot white"></span> Branco
-      </div>
-      <div>
-        <input type="checkbox" id="cor-cinza" value="Cinza" (change)="onCheckChange($event, 'cor')">
-        <span class="color-dot gray"></span> Cinza
+      <div *ngFor="let cor of coresDisponiveis">
+        <input type="checkbox" [id]="'cor-' + cor" [value]="cor" (change)="onCheckChange($event, 'cor')">
+        <span class="color-dot" [ngClass]="cor.toLowerCase()"></span> {{ cor }}
       </div>
     </div>
+    
 
     <div class="linha"></div>
 
-    <!-- Idade -->
     <div class="filter-group">
       <label>Idade</label>
       <input type="number" min="0" placeholder="Min" (input)="onIdadeChange('min', $event)">
@@ -102,7 +86,6 @@
 
     <div class="linha"></div>
 
-    <!-- Tamanho -->
     <div class="filter-group">
       <label>Tamanho</label>
       <div><input type="checkbox" value="PEQUENO" (change)="onCheckChange($event, 'tamanho')"> Pequeno</div>
@@ -116,14 +99,12 @@
       <img [src]="animal.fotoUrl || 'assets/png/pets-removebg-preview.png'" [alt]="animal.nome">
       <div class="card-info">
         <h4>{{ animal.nome }}</h4>
-        <p>Gênero: {{ animal.sexo }} - Idade: {{ animal.idade }} {{ animal.idade === 1 ? 'ano' : 'anos' }}</p>
+        <p>Sexo: {{ animal.sexo }} - Idade: {{ animal.idade }} {{ animal.idade === 1 ? 'ano' : 'anos' }}</p>
         <button>Saiba mais</button>
       </div>
     </div>
   </main>
 </div>
-
-<!-- Paginação -->
 <div class="pagination-controls">
   <button (click)="paginaAnterior()" [disabled]="paginaAtual === 0">Anterior</button>
   <button (click)="proximaPagina()" [disabled]="(paginaAtual + 1) * itensPorPagina >= animaisFiltrados.length">Próxima</button>

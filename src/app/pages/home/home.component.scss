@@ -5,6 +5,7 @@
   padding: 1rem 2rem;
   background-color: #ffffff;
   font-family: "Poppins", sans-serif;
+  box-shadow: 0 0 10px #333;
 }
 
 .navbar-logo img {
@@ -134,7 +135,7 @@
     margin-bottom: 8px;
     margin-left: 8px;
   }
-  
+
   .red {
     background-color: red;
   }
@@ -149,6 +150,10 @@
   
   .gray {
     background-color: gray;
+  }
+
+  .outros {
+    background-color: brown;
   }
   
   .animal-cards {

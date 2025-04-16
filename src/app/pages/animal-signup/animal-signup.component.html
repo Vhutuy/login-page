@@ -15,14 +15,14 @@
 <div class="cadastro-animal">
   <h1>Cadastrar Animal</h1>
 </div>
-<div class="container">
-  <form class="form-animal" action="/cadastrar-animal" method="POST">
 
-    <div class="linha"></div>
+<div class="container">
+  <form [formGroup]="animalForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="form-animal">
+
     <div class="form-row">
       <div class="form-group">
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+        <input type="text" id="nome" formControlName="nome">
       </div>
     </div>
 
@@ -31,32 +31,34 @@
     <div class="form-row">
       <div class="form-group">
         <label for="especie">Espécie:</label>
-        <select required name="especie" id="especie">
-          <option value="Cachorro">Cachorro</option>
-          <option value="Gato">Gato</option>
-          <option value="Pássaro">Pássaro</option>
-          <option value="Coelho">Coelho</option>
-          <option value="Equinos">Equinos</option>
-        </select>
-      </div>
+        <select id="especie" formControlName="especie">
+      <option value="">Selecione</option>
+      <option value="CACHORRO">Cachorro</option>
+      <option value="GATO">Gato</option>
+      <option value="PASSARO">Pássaro</option>
+      <option value="COELHO">Coelho</option>
+      <option value="EQUINOS">Equinos</option>
+    </select>
+  </div>
 
-      <div class="form-group">
-        <label for="raca">Raça:</label>
-        <select required name="raca" id="raca">
-          <option value="Labrador">Labrador</option>
-          <option value="Pastor Alemão">Pastor Alemão</option>
-          <option value="Poodle">Poodle</option>
-          <option value="Bulldog">Bulldog</option>
-          <option value="Outra">Outra</option>
-        </select>
-      </div>
+  <div class="form-group" *ngIf="showRacas">
+    <label for="raca">Raça:</label>
+    <select id="raca" formControlName="raca">
+      <option value="">Selecione</option>
+      <option value="LABRADOR">Labrador</option>
+      <option value="PASTOR_ALEMAO">Pastor Alemão</option>
+      <option value="POODLE">Poodle</option>
+      <option value="BULLDOG">Bulldog</option>
+      <option value="OUTRA">Outra</option>
+    </select>
+  </div>
 
       <div class="form-group">
         <label for="sexo">Sexo:</label>
-        <select required id="sexo" name="sexo">
+        <select id="sexo" formControlName="sexo">
           <option value="">Selecione</option>
-          <option value="M">Macho</option>
-          <option value="F">Fêmea</option>
+          <option value="Macho">Macho</option>
+          <option value="FEMEA">Fêmea</option>
         </select>
       </div>
     </div>
@@ -66,21 +68,22 @@
     <div class="form-row">
       <div class="form-group">
         <label for="tamanho">Tamanho:</label>
-        <select required name="tamanho" id="tamanho">
-          <option value="Pequeno">Pequeno</option>
-          <option value="Médio">Médio</option>
-          <option value="Grande">Grande</option>
+        <select id="tamanho" formControlName="tamanho">
+          <option value="">Selecione</option>
+          <option value="PEQUENO">Pequeno</option> 
+          <option value="MEDIO">Médio</option>    
+          <option value="GRANDE">Grande</option>   
         </select>
       </div>
 
       <div class="form-group">
         <label for="cor">Cor:</label>
-        <input required type="text" id="cor" name="cor">
+        <input type="text" id="cor" formControlName="cor">
       </div>
 
       <div class="form-group">
         <label for="idade">Idade:</label>
-        <input required type="number" id="idade" name="idade" min="0">
+        <input type="number" id="idade" min="0" formControlName="idade">
       </div>
     </div>
 
@@ -89,14 +92,14 @@
     <div class="form-row">
       <div class="form-group full-width">
         <label for="descricao">Descrição:</label>
-        <textarea id="descricao" name="descricao" rows="4"></textarea>
+        <textarea id="descricao" rows="4" formControlName="descricao"></textarea>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group full-width">
         <label for="imagem">Imagem:</label>
-        <input type="file" id="imagem" name="imagem" accept="image/*">
+        <input type="file" id="imagem" (change)="onFileChange($event)">
       </div>
     </div>
 

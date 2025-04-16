@@ -19,7 +19,18 @@ export class AnimalService {
     }
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
     return this.http.get<any[]>(this.baseUrl, { headers });
+  }
+
+  cadastrarAnimal(formData: FormData): Observable<any> {
+    const token = sessionStorage.getItem('auth-token');
+
+    if (!token) {
+      console.error('Token não encontrado no sessionStorage.');
+      return throwError(() => new Error('Token de autenticação ausente.'));
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(this.baseUrl, formData, { headers });
   }
 }
