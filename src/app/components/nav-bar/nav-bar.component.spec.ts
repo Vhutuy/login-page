@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnimalSignupComponent } from './animal-signup.component';
+import { NavBarComponent } from './nav-bar.component';
 
 describe('NavBarComponent', () => {
-  let component: AnimalSignupComponent;
-  let fixture: ComponentFixture<AnimalSignupComponent>;
+  let component: NavBarComponent;
+  let fixture: ComponentFixture<NavBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AnimalSignupComponent]
+      imports: [NavBarComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AnimalSignupComponent);
+    fixture = TestBed.createComponent(NavBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

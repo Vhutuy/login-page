@@ -1,47 +1,33 @@
-<nav class="navbar">
-  <div class="navbar-logo">
-    <a routerLink="/home"><img src="/assets/svg/Logo-preta.svg" alt=""></a>
-  </div>
-  <ul class="navbar-links">
-    <li><a routerLink="/home">Home</a></li>
-    <li><a routerLink="/about-us">Sobre nós</a></li>
-    <li><a routerLink="/animal-signup">Pets</a></li>
-  </ul>
-  <div class="navbar-user">
-    <i class="fa fa-user"></i>
-  </div>
-</nav>
-
-<div class="cadastro-animal">
-  <h1>Cadastrar Animal</h1>
-</div>
-
-<div class="container">
-  <form [formGroup]="animalForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="form-animal">
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" formControlName="nome">
+<app-nav-bar></app-nav-bar>
+<div class="animal-form">
+  <div class="image-upload">
+    <label for="fileInput">
+      <div *ngIf="imagePreview as preview; else placeholder" class="image-preview">
+        <img [src]="preview" alt="Preview do animal" />
       </div>
+      <ng-template #placeholder>
+        <div class="image-placeholder">Clique para adicionar imagem</div>
+      </ng-template>
+    </label>
+    <input type="file" id="fileInput" (change)="onImageSelected($event)" hidden />
+  </div>
+
+  <form [formGroup]="animalForm" (ngSubmit)="onSubmit()" class="animal-details">
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" formControlName="nome" placeholder="Digite o nome do animal"/>
     </div>
 
-    <div class="linha"></div>
+    <div class="form-group">
+      <label>Espécie</label>
+      <select formControlName="especie">
+        <option value="">Selecione</option>
+        <option value="CACHORRO">Cachorro</option>
+        <option value="GATO">Gato</option>
+      </select>
+    </div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <label for="especie">Espécie:</label>
-        <select id="especie" formControlName="especie">
-      <option value="">Selecione</option>
-      <option value="CACHORRO">Cachorro</option>
-      <option value="GATO">Gato</option>
-      <option value="PASSARO">Pássaro</option>
-      <option value="COELHO">Coelho</option>
-      <option value="EQUINOS">Equinos</option>
-    </select>
-  </div>
-
-  <div class="form-group" *ngIf="showRacas">
+    <div class="form-group" *ngIf="showRacas">
     <label for="raca">Raça:</label>
     <select id="raca" formControlName="raca">
       <option value="">Selecione</option>
@@ -53,56 +39,48 @@
     </select>
   </div>
 
-      <div class="form-group">
-        <label for="sexo">Sexo:</label>
-        <select id="sexo" formControlName="sexo">
-          <option value="">Selecione</option>
-          <option value="Macho">Macho</option>
-          <option value="FEMEA">Fêmea</option>
-        </select>
-      </div>
+    <div class="form-group">
+      <label>Sexo</label>
+      <select formControlName="sexo">
+        <option value="">Selecione</option>
+        <option value="MACHO">Macho</option>
+        <option value="FEMEA">Fêmea</option>
+      </select>
     </div>
 
-    <div class="linha"></div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="tamanho">Tamanho:</label>
-        <select id="tamanho" formControlName="tamanho">
-          <option value="">Selecione</option>
-          <option value="PEQUENO">Pequeno</option> 
-          <option value="MEDIO">Médio</option>    
-          <option value="GRANDE">Grande</option>   
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="cor">Cor:</label>
-        <input type="text" id="cor" formControlName="cor">
-      </div>
-
-      <div class="form-group">
-        <label for="idade">Idade:</label>
-        <input type="number" id="idade" min="0" formControlName="idade">
-      </div>
+    <div class="form-group">
+      <label>Tamanho</label>
+      <select formControlName="tamanho">
+        <option value="">Selecione</option>
+        <option value="PEQUENO">Pequeno</option>
+        <option value="MEDIO">Médio</option>
+        <option value="GRANDE">Grande</option>
+      </select>
     </div>
 
-    <div class="linha"></div>
-
-    <div class="form-row">
-      <div class="form-group full-width">
-        <label for="descricao">Descrição:</label>
-        <textarea id="descricao" rows="4" formControlName="descricao"></textarea>
-      </div>
+    <div class="form-group">
+      <label>Cor</label>
+      <select formControlName="tamanho">
+        <option value="">Selecione</option>
+        <option value="BRANCO">Branco</option>
+        <option value="CINZA">Cinza</option>
+        <option value="PRETO">Preto</option>
+        <option value="MARROM">Marrom</option>
+        <option value="CARAMELO">Caramelo</option>
+        <option value="OUTRA">Outra</option>
+      </select>
     </div>
 
-    <div class="form-row">
-      <div class="form-group full-width">
-        <label for="imagem">Imagem:</label>
-        <input type="file" id="imagem" (change)="onFileChange($event)">
-      </div>
+    <div class="form-group">
+      <label>Idade</label>
+      <input type="number" formControlName="idade" min="0" />
     </div>
 
-    <button type="submit">Cadastrar Animal</button>
+    <div class="form-group full-width">
+      <label>Descrição</label>
+      <textarea formControlName="descricao" rows="4" placeholder="Digite as características, história ou especificidades do animal"></textarea>
+    </div>
+
+    <button type="submit">Cadastrar</button>
   </form>
 </div>

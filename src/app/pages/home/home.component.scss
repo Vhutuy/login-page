@@ -1,36 +1,4 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #ffffff;
-  font-family: "Poppins", sans-serif;
-  box-shadow: 0 0 10px #333;
-}
-
-.navbar-logo img {
-  width: 50px;
-  height: 50px;
-}
-
-.navbar-links {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  margin: 0;
-}
-
-.navbar-links a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-}
-
-.navbar-user {
-  font-size: 1.2rem;
-}
-  
-  .banner-wrapper{
+  .banner-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,7 +6,8 @@
     margin: 20px 0;
     font-family: "Poppins", sans-serif;
   }
-  .banner-container{
+
+  .banner-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,33 +17,34 @@
     background: linear-gradient(to right, #F4F4F4 50%, #012A48 50%);
     border-radius: 1.5rem;
     color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
-  .banner-container img{
+  .banner-container img {
     height: 100%;
   }
-  
+
   .container {
     display: flex;
     gap: 2rem;
     padding: 2rem;
     font-family: "Poppins", sans-serif;
   }
-  
+
   .filter {
     width: 14.5vw;
-    max-height: 90vh;
+    height: 100vh;
     overflow-y: auto;
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
-  .filter h3{
+  .filter h3 {
     margin-left: 5px;
     font-size: 1.5em;
   }
-  
+
   .filter-group {
     margin-top: 1rem;
   }
@@ -83,19 +53,20 @@
     padding: 1rem;
   }
 
-  select, input[type="number"]  {
-  width: 10vw;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  margin-left: 5px;
-  margin-right: 5px;
-  cursor: pointer;
-  margin-bottom: 5px;
+  select,
+  input[type="number"] {
+    width: 10vw;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
   }
 
-  .linha{
+  .linha {
     border-bottom: 1px solid #333;
     padding-bottom: 0.5rem;
     margin-top: 1rem;
@@ -103,7 +74,7 @@
     font-size: 1.2rem;
   }
 
-  input[type="checkbox"]{
+  input[type="checkbox"] {
     height: 1.3em;
     width: 1.3em;
     background-color: #FFFFFF;
@@ -116,12 +87,13 @@
     margin-left: 8px;
   }
 
-  input[type="checkbox"]:checked{
+  input[type="checkbox"]:checked {
     background-image: url(/assets/svg/check-line.svg);
   }
 
-  label{
+  label {
     margin-left: 5px;
+    font-weight: bold;
   }
 
   .color-dot {
@@ -135,14 +107,14 @@
     margin-bottom: 8px;
     margin-left: 8px;
   }
-  
+
   .animal-cards {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
-  
+
   .card {
     background: #F4F4F4;
     border-radius: 0.75rem;
@@ -155,33 +127,34 @@
     height: 60vh;
   }
 
-  .card div{
+  .card div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  .card h4{
+  .card h4 {
     font-size: 1.2rem;
     font-weight: 500;
     margin-bottom: 1rem;
   }
 
-  .card p{
+  .card p {
     color: #8b8b8b;
     font-weight: bold;
   }
-  
+
   .card img {
     border-top-left-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
     width: 100%;
     height: 40vh;
     object-fit: cover;
+    border-radius: 6px;
   }
 
-  .card button{
+  .card button {
     font-size: 1rem;
     background-color: #012A48;
     color: #FFFFFF;
@@ -191,19 +164,17 @@
     padding: 4px;
     border-radius: 4px;
     margin-top: 20px;
-    transition: 0.2s ease ;
+    transition: 0.2s ease;
     cursor: pointer;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   }
 
-  .card button:active{
+  .card button:active {
     transform: scale(0.96);
   }
 
-  .card button:hover{
+  .card button:hover {
     background-color: #F4F4F4;
     color: #000000;
     border: 1px solid #333;
   }
-  
-  

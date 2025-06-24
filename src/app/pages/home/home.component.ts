@@ -3,13 +3,14 @@ import ScrollReveal from 'scrollreveal';
 import { CommonModule } from '@angular/common';
 import { AnimalService } from '../../services/animal.service';
 import { RouterModule } from '@angular/router';
+import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [CommonModule, RouterModule]
+  imports: [CommonModule, RouterModule, NavBarComponent]
 })
 export class HomeComponent implements OnInit {
 
@@ -67,28 +68,34 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  filtrarAnimais(): void {
-    this.animaisFiltrados = this.animais.filter(animal => {
-      const especieOk = !this.filtros.especie || animal.especie === this.filtros.especie;
-      const racaOk = !this.filtros.raca || animal.raca === this.filtros.raca;
-      const generoOk = this.filtros.genero.length === 0 || this.filtros.genero.includes(animal.sexo);
+filtrarAnimais(): void {
+  this.animaisFiltrados = this.animais.filter(animal => {
+    const especieOk = !this.filtros.especie || animal.especie === this.filtros.especie;
+    const racaOk = !this.filtros.raca || animal.raca === this.filtros.raca;
+    const generoOk = this.filtros.genero.length === 0 || this.filtros.genero.includes(animal.sexo);
 
-      const corSelecionadas = this.filtros.cor;
-      const corEstaEmPrincipais = this.coresPrincipais.includes(animal.cor);
-      const corOk =
-        corSelecionadas.length === 0 ||
-        corSelecionadas.includes(animal.cor) ||
-        (corSelecionadas.includes('OUTRAS') && !corEstaEmPrincipais);
+    const corSelecionadas = this.filtros.cor;
+    const corEstaEmPrincipais = this.coresPrincipais.includes(animal.cor);
 
-      const idadeOk =
-        (this.filtros.idadeMin === null || animal.idade >= this.filtros.idadeMin) &&
-        (this.filtros.idadeMax === null || animal.idade <= this.filtros.idadeMax);
+    let corOk = true;
+    if (corSelecionadas.length > 0) {
+      if (corSelecionadas.includes('OUTRAS')) {
+        corOk = !corEstaEmPrincipais;
+      } else {
+        corOk = corSelecionadas.includes(animal.cor);
+      }
+    }
 
-      const tamanhoOk = this.filtros.tamanho.length === 0 || this.filtros.tamanho.includes(animal.tamanho);
+    const idadeOk =
+      (this.filtros.idadeMin === null || animal.idade >= this.filtros.idadeMin) &&
+      (this.filtros.idadeMax === null || animal.idade <= this.filtros.idadeMax);
 
-      return especieOk && racaOk && generoOk && corOk && idadeOk && tamanhoOk;
-    });
-  }
+    const tamanhoOk = this.filtros.tamanho.length === 0 || this.filtros.tamanho.includes(animal.tamanho);
+
+    return especieOk && racaOk && generoOk && corOk && idadeOk && tamanhoOk;
+  });
+}
+
 
   get animaisPaginados() {
     const inicio = this.paginaAtual * this.itensPorPagina;

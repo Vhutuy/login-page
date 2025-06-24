@@ -3,17 +3,19 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AnimalService } from '../../services/animal.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-animal-signup',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NavBarComponent],
   templateUrl: './animal-signup.component.html',
-  styleUrl: './animal-signup.component.scss'
+  styleUrls: ['./animal-signup.component.scss']
 })
 export class AnimalSignupComponent {
   animalForm: FormGroup;
   selectedFile: File | null = null;
+  imagePreview: string | null = null;
   showRacas: boolean = false;
 
   constructor(private fb: FormBuilder, private animalService: AnimalService) {
@@ -47,11 +49,21 @@ export class AnimalSignupComponent {
     this.animalForm.get('raca')?.updateValueAndValidity();
   }
 
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
+  // Ajuste do método para carregar a imagem e mostrar preview
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      return;
     }
+    const file = input.files[0];
+    this.selectedFile = file;
+
+    // Gerar preview da imagem
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 
   onSubmit() {
