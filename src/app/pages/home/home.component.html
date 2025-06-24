@@ -61,7 +61,7 @@
         <span class="color-dot" [ngClass]="cor.toLowerCase()"></span> {{ cor }}
       </div>
     </div>
-    
+
 
     <div class="linha"></div>
 
@@ -94,5 +94,6 @@
 </div>
 <div class="pagination-controls">
   <button (click)="paginaAnterior()" [disabled]="paginaAtual === 0">Anterior</button>
-  <button (click)="proximaPagina()" [disabled]="(paginaAtual + 1) * itensPorPagina >= animaisFiltrados.length">Próxima</button>
+  <button (click)="proximaPagina()"
+    [disabled]="(paginaAtual + 1) * itensPorPagina >= animaisFiltrados.length">Próxima</button>
 </div>

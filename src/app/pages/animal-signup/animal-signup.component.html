@@ -15,7 +15,7 @@
   <form [formGroup]="animalForm" (ngSubmit)="onSubmit()" class="animal-details">
     <div class="form-group">
       <label>Nome</label>
-      <input type="text" formControlName="nome" placeholder="Digite o nome do animal"/>
+      <input type="text" formControlName="nome" placeholder="Digite o nome do animal" />
     </div>
 
     <div class="form-group">
@@ -24,20 +24,23 @@
         <option value="">Selecione</option>
         <option value="CACHORRO">Cachorro</option>
         <option value="GATO">Gato</option>
+        <option value="AVES">Aves</option>
+        <option value="COELHO">Coelho</option>
+        <option value="EQUINOS">Equinos</option>
       </select>
     </div>
 
     <div class="form-group" *ngIf="showRacas">
-    <label for="raca">Raça:</label>
-    <select id="raca" formControlName="raca">
-      <option value="">Selecione</option>
-      <option value="LABRADOR">Labrador</option>
-      <option value="PASTOR_ALEMAO">Pastor Alemão</option>
-      <option value="POODLE">Poodle</option>
-      <option value="BULLDOG">Bulldog</option>
-      <option value="OUTRA">Outra</option>
-    </select>
-  </div>
+      <label for="raca">Raça:</label>
+      <select id="raca" formControlName="raca">
+        <option value="">Selecione</option>
+        <option value="LABRADOR">Labrador</option>
+        <option value="PASTOR_ALEMAO">Pastor Alemão</option>
+        <option value="POODLE">Poodle</option>
+        <option value="BULLDOG">Bulldog</option>
+        <option value="OUTRA">Outra</option>
+      </select>
+    </div>
 
     <div class="form-group">
       <label>Sexo</label>
@@ -78,7 +81,8 @@
 
     <div class="form-group full-width">
       <label>Descrição</label>
-      <textarea formControlName="descricao" rows="4" placeholder="Digite as características, história ou especificidades do animal"></textarea>
+      <textarea formControlName="descricao" rows="4"
+        placeholder="Digite as características, a história ou outras informações específicas sobre o animal."></textarea>
     </div>
 
     <button type="submit">Cadastrar</button>

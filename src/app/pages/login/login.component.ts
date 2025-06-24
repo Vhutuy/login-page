@@ -40,16 +40,25 @@ export class LoginComponent {
     })
   }
 
-  submit(){
-    this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => {this.toastService.success("Login feito com sucesso!")
-        this.router.navigate(["home"]);
-      },
-      error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
-    })
-  }
+  submit() {
+  const { email, password } = this.loginForm.value;
+
+  this.loginService.login(email!, password!).subscribe({
+    next: (user: any) => {
+
+      sessionStorage.setItem('userName', user.name);
+
+      this.toastService.success("Login feito com sucesso!");
+      this.router.navigate(["home"]);
+    },
+    error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
+  });
+}
+
 
   navigate(){
     this.router.navigate(["signup"])
   }
 }
+
+

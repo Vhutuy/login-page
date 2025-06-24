@@ -178,3 +178,36 @@
     color: #000000;
     border: 1px solid #333;
   }
+
+  .pagination-controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .pagination-controls button{
+    font-size: 0.90rem;
+    background-color: #012A48;
+    color: #FFFFFF;
+    border: none;
+    height: 4vh;
+    width: 6vw;
+    padding: 4px;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .pagination-controls button:active{
+    transform: scale(0.96);
+  }
+
+  .pagination-controls button:hover{
+    background-color: #F4F4F4;
+    color: #000000;
+    border: 1px solid #333;
+  }

@@ -1,14 +1,29 @@
 <nav class="navbar">
-    <div class="navbar-logo">
-      <a routerLink="/home"><img src="/assets/svg/Logo-preta.svg" alt=""></a>
-    </div>
-    <ul class="navbar-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/about-us">Sobre nós</a></li>
-      <li><a routerLink="/animal-signup">Pets</a></li>
-    </ul>
-    <div class="navbar-user">
-      <i class="fa fa-user"></i>
-    </div>
-  </nav>
+  <div class="navbar-logo">
+    <a routerLink="/home"><img src="/assets/svg/Logo-preta.svg" alt="Logo" /></a>
+  </div>
+
+  <div class="navbar-user">
+    <i class="fa fa-user"></i>
+  </div>
+
+  <ul class="navbar-links">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/about-us">Sobre nós</a></li>
+    <li><a routerLink="/animal-signup">Pets</a></li>
+
+    <li class="user-dropdown" *ngIf="userName">
+      <span #dropdownToggle class="user" (click)="toggleDropdown($event)">
+        Seja bem-vindo, {{ userName }}
+        <i class="arrow" [class.rotate]="dropdownAberto"></i>
+      </span>
+      <ul class="dropdown-user" [class.show]="dropdownAberto">
+        <li><a routerLink="/">Visualizar Perfil</a></li>
+        <li><a routerLink="/">Alterar Dados</a></li>
+        <li><a (click)="logout()">Sair</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</nav>
 <router-outlet></router-outlet>

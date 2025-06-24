@@ -1,32 +1,95 @@
 .navbar {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  gap: 6rem;
+}
+
+.navbar-logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar-user{
+  margin-left: auto;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 4rem;
+  margin: 0;
+  align-items: center;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.user-dropdown {
+  position: relative;
+
+  .user {
+    cursor: pointer;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #ffffff;
-    font-family: "Poppins", sans-serif;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    gap: 6rem;
-  }
-  
-  .navbar-logo img {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .navbar-links {
-    display: flex;
-    list-style: none;
-    gap: 4rem;
-    margin: 0;
-  }
-  
-  .navbar-links a {
-    text-decoration: none;
-    color: #000;
+    gap: 0.5rem;
     font-weight: 500;
   }
-  
-  .navbar-user {
-    font-size: 1.2rem;
+
+  .arrow {
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(45deg); // seta para baixo
+    transition: transform 0.3s ease;
+    margin-top: 2px;
   }
+
+  .arrow.rotate {
+    margin-bottom:6px ;
+    transform: rotate(-135deg); // seta para cima
+  }
+
+  .dropdown-user {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    list-style: none;
+    width: 180px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    li {
+      padding: 0.5rem 1rem;
+
+      a {
+        color: #333;
+        text-decoration: none;
+        display: block;
+
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
+    }
+  }
+
+  .dropdown-user.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
