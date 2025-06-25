@@ -23,7 +23,7 @@ export class AnimalService {
     return this.http.get<any[]>(this.baseUrl, { headers });
   }
 
-  cadastrarAnimal(formData: FormData): Observable<any> {
+  cadastrarAnimalJson(animalData: any): Observable<any> {
     const token = sessionStorage.getItem('auth-token');
 
     if (!token) {
@@ -31,10 +31,14 @@ export class AnimalService {
       return throwError(() => new Error('Token de autenticação ausente.'));
     }
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post(this.baseUrl, formData, { headers });
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
 
+    return this.http.post(this.baseUrl, JSON.stringify(animalData), { headers });
   }
+
 
   buscarPorId(id: string): Observable<any> {
     const token = sessionStorage.getItem('auth-token');
