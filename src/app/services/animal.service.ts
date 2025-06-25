@@ -41,15 +41,14 @@ export class AnimalService {
 
 
   buscarPorId(id: string): Observable<any> {
-    const token = sessionStorage.getItem('auth-token');
-
-    if (!token) {
-      console.error('Token não encontrado no sessionStorage.');
-      return throwError(() => new Error('Token de autenticação ausente.'));
-    }
-
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<any>(`${this.baseUrl}/${id}`, { headers });
+  const token = sessionStorage.getItem('auth-token');
+  if (!token) {
+    return throwError(() => new Error('Token de autenticação ausente.'));
   }
+
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get<any>(`https://patas-backend.onrender.com/animais/${id}`, { headers });
+}
+
 
 }

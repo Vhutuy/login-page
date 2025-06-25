@@ -6,6 +6,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { HomeComponent } from './pages/home/home.component';
 import { Component } from '@angular/core';
 import { AnimalSignupComponent } from './pages/animal-signup/animal-signup.component';
+import { AnimalVisualizerComponent } from './pages/animal-visualizer/animal-visualizer.component';
 
 
 export const routes: Routes = [
@@ -33,9 +34,11 @@ export const routes: Routes = [
         canActivate:[AuthGuard]
     },
     {
-        path: "animal/:id",
-        loadComponent: () => import('./components/animal-details/animal-details.component').then(m => m.AnimalDetailsComponent)
-    },
+        path: "animal-visualizer",
+        component: AnimalVisualizerComponent,
+        canActivate:[AuthGuard]
+    }
+
 ];
 
 

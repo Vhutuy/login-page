@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ElementRef, ViewChild, OnInit } from '@angula
 import ScrollReveal from 'scrollreveal';
 import { CommonModule } from '@angular/common';
 import { AnimalService } from '../../services/animal.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
 
 @Component({
@@ -10,7 +10,7 @@ import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [CommonModule, RouterModule, NavBarComponent]
+  imports: [CommonModule, RouterModule, NavBarComponent, RouterLink, RouterOutlet]
 })
 export class HomeComponent implements OnInit {
 
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   coresDisponiveis: string[] = [];
   coresPrincipais: string[] = ['Preto', 'Branco', 'Vermelho', 'Damasco', 'Cinza', 'Azul', 'Marrom'];
 
-  constructor(private animalService: AnimalService) {
+  constructor(private router:Router ,private animalService: AnimalService) {
     this.user = sessionStorage.getItem("userName");
   }
 
@@ -161,5 +161,10 @@ filtrarAnimais(): void {
     }
 
     this.onFiltroChange();
+  }
+
+  visualizer(x: string):void{
+    sessionStorage.setItem("animal-id", x)
+    this.router.navigate(['/animal-visualizer'])
   }
 }
