@@ -22,7 +22,7 @@ export class AnimalSignupComponent {
     this.animalForm = this.fb.group({
       nome: ['', Validators.required],
       especie: ['', Validators.required],
-      raca: [''], // Validação condicional
+      raca: [''],
       sexo: ['', Validators.required],
       tamanho: ['', Validators.required],
       cor: ['', Validators.required],
@@ -49,7 +49,6 @@ export class AnimalSignupComponent {
     this.animalForm.get('raca')?.updateValueAndValidity();
   }
 
-  // Ajuste do método para carregar a imagem e mostrar preview
   onImageSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) {
@@ -58,7 +57,6 @@ export class AnimalSignupComponent {
     const file = input.files[0];
     this.selectedFile = file;
 
-    // Gerar preview da imagem
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string;
@@ -69,27 +67,40 @@ export class AnimalSignupComponent {
   onSubmit() {
     if (this.animalForm.valid) {
       const formData = new FormData();
-      const userId = '0c080a7f-e74d-4d24-9c84-d36f751f968d'; // UUID fixo
 
-      for (const [key, value] of Object.entries(this.animalForm.value)) {
+      const userId = '773620a1-2366-4061-b1bd-894a6517f533';
+      if (!userId) {
+        alert('Usuário não autenticado');
+        return;
+      }
+
+      // Preenche o formData com os dados do formulário
+      Object.entries(this.animalForm.value).forEach(([key, value]) => {
         if (key !== 'imagem') {
           formData.append(key, value?.toString() ?? '');
         }
-      }
-
-      if (this.selectedFile) {
-        formData.append('imagem', this.selectedFile, this.selectedFile.name);
-      }
+      });
 
       formData.append('userId', userId);
 
+      // Apenas para debugar
+      formData.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+      });
+
+      // Faz o cadastro
       this.animalService.cadastrarAnimal(formData).subscribe({
         next: () => alert('Animal cadastrado com sucesso!'),
-        error: (err: any) =>
-          alert('Erro ao cadastrar: ' + (err?.error?.message || 'Erro desconhecido'))
+        error: (err: any) => {
+          console.error(err);
+          alert('Erro ao cadastrar: ' + (err?.error?.message || 'Erro desconhecido'));
+        }
       });
     } else {
       alert('Preencha todos os campos obrigatórios!');
     }
   }
+
+
+
 }

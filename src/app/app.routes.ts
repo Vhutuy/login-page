@@ -31,8 +31,11 @@ export const routes: Routes = [
         path: "animal-signup",
         component: AnimalSignupComponent,
         canActivate:[AuthGuard]
-    }
-    
+    },
+    {
+        path: "animal/:id",
+        loadComponent: () => import('./components/animal-details/animal-details.component').then(m => m.AnimalDetailsComponent)
+    },
 ];
 
 

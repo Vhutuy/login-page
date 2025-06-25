@@ -87,7 +87,7 @@
       <div class="card-info">
         <h4>{{ animal.nome }}</h4>
         <p>Sexo: {{ animal.sexo }} - Idade: {{ animal.idade }} {{ animal.idade === 1 ? 'ano' : 'anos' }}</p>
-        <button>Saiba mais</button>
+        <button [routerLink]="['/animal', animal.id]">Saiba mais</button>
       </div>
     </div>
   </main>
