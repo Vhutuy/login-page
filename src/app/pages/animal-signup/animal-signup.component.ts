@@ -24,7 +24,7 @@ export class AnimalSignupComponent {
     this.animalForm = this.fb.group({
       nome: ['', Validators.required],
       especie: ['', Validators.required],
-      raca: [''],
+      raca: ['', Validators.required],
       sexo: ['', Validators.required],
       tamanho: ['', Validators.required],
       cor: ['', Validators.required],
@@ -63,6 +63,10 @@ export class AnimalSignupComponent {
         userId: userId
       };
 
+      if (animalData.especie !== 'CACHORRO') {
+        delete animalData.raca;
+      }
+
       this.animalService.cadastrarAnimalJson(animalData).subscribe({
         next: () => alert('Animal cadastrado com sucesso!'),
         error: (err) => {
@@ -74,4 +78,5 @@ export class AnimalSignupComponent {
       alert('Preencha todos os campos obrigatórios!');
     }
   }
+
 }
