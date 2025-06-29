@@ -24,7 +24,7 @@ export class AnimalSignupComponent {
     this.animalForm = this.fb.group({
       nome: ['', Validators.required],
       especie: ['', Validators.required],
-      raca: ['', Validators.required],
+      raca: [''],
       sexo: ['', Validators.required],
       tamanho: ['', Validators.required],
       cor: ['', Validators.required],
