@@ -3,13 +3,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  background: #fff;
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 0 10px #ccc;
   margin: 2rem auto;
   width: 80vw;
-  height: auto; // Altura adaptável
+  height: auto;
 
   .image-upload {
     flex: 1 1 300px;
@@ -64,7 +62,7 @@
         font-size: 1rem;
         background-color: #f9f9f9;
         color: #333;
-        width: 100%; // ✅ Corrigido aqui
+        width: 100%;
       }
 
       textarea {
@@ -99,7 +97,6 @@
     }
   }
 
-  // ✅ Responsividade total
   @media (max-width: 720px) {
     flex-direction: column;
     width: 95vw;

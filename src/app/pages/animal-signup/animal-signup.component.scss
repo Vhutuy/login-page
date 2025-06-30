@@ -3,10 +3,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  background: #fff;
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 0 10px #ccc;
   margin: 2rem auto;
   width: 80vw;
   min-height: 80vh;
@@ -117,6 +115,7 @@
     padding: 1.5rem;
 
     .image-upload {
+
       .image-preview,
       .image-placeholder {
         height: 400px;
@@ -142,6 +141,7 @@
       grid-template-columns: 1fr;
 
       .form-group {
+
         input,
         select,
         textarea {
@@ -159,6 +159,7 @@
     padding: 1rem;
 
     .image-upload {
+
       .image-preview,
       .image-placeholder {
         height: 200px;

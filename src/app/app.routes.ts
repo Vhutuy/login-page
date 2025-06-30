@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { Component } from '@angular/core';
 import { AnimalSignupComponent } from './pages/animal-signup/animal-signup.component';
 import { AnimalVisualizerComponent } from './pages/animal-visualizer/animal-visualizer.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 
 export const routes: Routes = [
@@ -29,14 +30,19 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
+        path: "about-us",
+        component: AboutUsComponent,
+        canActivate: [AuthGuard]
+    },
+    {
         path: "animal-signup",
         component: AnimalSignupComponent,
-        canActivate:[AuthGuard]
+        canActivate: [AuthGuard]
     },
     {
         path: "animal-visualizer",
         component: AnimalVisualizerComponent,
-        canActivate:[AuthGuard]
+        canActivate: [AuthGuard]
     }
 
 ];
