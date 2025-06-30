@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { AnimalService } from '../../services/animal.service';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [CommonModule, RouterModule, NavBarComponent, RouterLink, RouterOutlet]
+  imports: [CommonModule, RouterModule, FooterComponent, NavBarComponent]
 })
 export class HomeComponent implements OnInit {
 

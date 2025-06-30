@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AnimalService } from '../../services/animal.service';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-animal-visualizer',
   templateUrl: './animal-visualizer.component.html',
   styleUrls: ['./animal-visualizer.component.scss'],
   standalone: true,
-  imports: [CommonModule, NavBarComponent]
+  imports: [CommonModule, NavBarComponent, FooterComponent]
 })
 export class AnimalVisualizerComponent implements OnInit {
   animal: any = null;

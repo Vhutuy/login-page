@@ -4,11 +4,12 @@ import { AnimalService } from '../../services/animal.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-animal-signup',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, NavBarComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NavBarComponent, FooterComponent],
   templateUrl: './animal-signup.component.html',
   styleUrls: ['./animal-signup.component.scss']
 })
