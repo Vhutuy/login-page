@@ -53,7 +53,7 @@ export class AnimalSignupComponent {
 
   onSubmit() {
     if (this.animalForm.valid) {
-      const userId = '773620a1-2366-4061-b1bd-894a6517f533';
+      const userId = 'c6197dd4-e7ee-47ef-b982-eb8b8acbd86b';
       if (!userId) {
         alert('Usuário não autenticado!');
         return;
